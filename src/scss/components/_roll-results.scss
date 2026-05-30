@@ -1,0 +1,80 @@
+// ─── Chat / Roll Result Styles ───────────────────────────────────────────────
+// These appear inside Foundry chat messages, outside .mekanicers, so they are
+// kept at the global level.
+
+.mekanicers-roll-result {
+  font-family: $font-primary;
+  background: $c-background;
+  color: $c-text;
+  border: $border-groove;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 6px;
+
+  .dice-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+
+  .die-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid $c-secondary;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    color: $c-text;
+
+    &.success {
+      background: rgba($c-success, 0.15);
+      border-color: $c-success;
+      color: lighten($c-success, 15%);
+    }
+
+    &.max {
+      background: rgba($c-highlight, 0.15);
+      border-color: $c-highlight;
+      color: $c-highlight;
+      box-shadow: 0 0 6px rgba($c-highlight, 0.25);
+    }
+
+    // A single die can be both success and max
+    &.success.max {
+      background: rgba($c-highlight, 0.2);
+      border-color: $c-highlight;
+      color: $c-highlight;
+    }
+  }
+
+  .success-summary {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    color: $c-text;
+    padding-top: 6px;
+    border-top: 1px solid rgba($c-secondary, 0.3);
+
+    .success-count {
+      font-size: 18px;
+      color: $c-primary;
+      margin-right: 4px;
+    }
+
+    .crit-tag {
+      color: $c-highlight;
+      margin-left: 4px;
+    }
+
+    &.crit {
+      color: $c-highlight;
+    }
+  }
+}

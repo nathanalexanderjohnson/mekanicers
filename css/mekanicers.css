@@ -210,9 +210,23 @@
   color: #E7DFC6;
 }
 .mekanicers input,
-.mekanicers textarea,
+.mekanicers textarea {
+  color: #E7DFC6;
+}
 .mekanicers select {
   color: #E7DFC6;
+  background: #1E1F22;
+  border: 1px solid #B9AE93;
+  border-radius: 3px;
+  padding: 1px 2px;
+  height: 22px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+.mekanicers select option {
+  background: #000;
 }
 .mekanicers .item-form {
   font-family: "Roboto", sans-serif;
@@ -241,6 +255,9 @@
   margin: 0;
   padding-left: 8px;
   padding-right: 8px;
+}
+.mekanicers .sheet-header .magic-type select {
+  width: 50%;
 }
 .mekanicers .sheet-header .resource {
   display: flex;
@@ -472,6 +489,297 @@
   grid-column: 1/5;
   grid-row: 2;
 }
+.mekanicers .mekanicer-attributes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-end;
+}
+.mekanicers .mekanicer-attributes .thesis-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-height: 50px;
+}
+.mekanicers .mekanicer-attributes .thesis-field .resource-label {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 3px;
+}
+.mekanicers .mekanicer-attributes .thesis-field input {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .mekanicer-attributes .tile {
+  width: 68px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 2px;
+}
+.mekanicers .mekanicer-attributes .tile .resource-label {
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+.mekanicers .mekanicer-attributes .tile input {
+  width: 44px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .mekanicer-attributes .tile .resource-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+}
+.mekanicers .mekanicer-attributes .tile .resource-content input {
+  width: 28px;
+  font-size: 11px;
+}
+.mekanicers .sorcerer-content .curse-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper {
+  margin-bottom: 5px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-display {
+  cursor: pointer;
+  user-select: none;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-display .curse-label {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+  cursor: inherit;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-edit {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-edit input {
+  width: 140px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 4px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-edit .curse-edit-actions {
+  display: flex;
+  gap: 6px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-edit .curse-edit-actions button {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 10px;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  color: #E7DFC6;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper .curse-label-edit .curse-edit-actions button:hover {
+  background: #1E1F22;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper.editing .curse-label-display {
+  display: none;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-label-wrapper.editing .curse-label-edit {
+  display: flex;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-dots {
+  display: flex;
+  gap: 8px;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-dots .sorcerer-curse-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #B08D57;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-dots .sorcerer-curse-dot.filled {
+  background: #B08D57;
+}
+.mekanicers .sorcerer-content .curse-widget .curse-dots .sorcerer-curse-dot:hover {
+  background: rgba(176, 141, 87, 0.5);
+}
+.mekanicers .sorcerer-content .sorcerer-top-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-end;
+}
+.mekanicers .sorcerer-content .sorcerer-top-row .attribute.tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 4px 6px;
+  min-height: 50px;
+}
+.mekanicers .sorcerer-content .sorcerer-top-row .attribute.tile .resource-label {
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.mekanicers .sorcerer-content .sorcerer-top-row .attribute.tile input {
+  width: 50px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .sorcerer-content .sorcerer-top-row .attribute.tile select {
+  width: 100%;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 4px 6px;
+  min-height: 50px;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource .resource-label {
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource > input {
+  width: 50px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource .resource-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource .resource-content input {
+  width: 40px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .sorcerer-content .sorcerer-bottom-row .resource .resource-content span {
+  font-size: 11px;
+  font-weight: bold;
+  color: #B9AE93;
+}
+.mekanicers .sorcerer-content .spellcores-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mekanicers .sorcerer-content .spellcores-stack .spellcore-col .spellcore-header {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0 0 5px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #B9AE93;
+}
+.mekanicers .sorcerer-content .aspects-gifts-row {
+  display: flex;
+  gap: 10px;
+}
+.mekanicers .sorcerer-content .aspects-gifts-row .aspects-section,
+.mekanicers .sorcerer-content .aspects-gifts-row .gifts-section {
+  flex: 1;
+}
+.mekanicers .sorcerer-content .aspects-section .aspects-header {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0 0 5px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #B9AE93;
+}
+.mekanicers .sorcerer-content .gifts-section .gifts-header {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0 0 5px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #B9AE93;
+}
 .mekanicers .resource-label {
   font-weight: bold;
 }
@@ -618,6 +926,28 @@
   border-right: 1px solid #B9AE93;
   font-size: 12px;
 }
+.mekanicers .items-list .item-study {
+  flex: 1;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .items-list .item-study select {
+  width: 100%;
+}
+.mekanicers .items-list .item-level {
+  flex: 0 0 60px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .items-list .item-level input {
+  width: 100%;
+}
 .mekanicers .items-list .items-header {
   height: 28px;
   margin: 2px 0;
@@ -650,6 +980,145 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.mekanicers .gadget-item {
+  padding: 4px 2px;
+}
+.mekanicers .gadget-item .gadget-summary {
+  align-items: center;
+}
+.mekanicers .gadget-item .gadget-toggle {
+  cursor: pointer;
+}
+.mekanicers .gadget-item .gadget-toggle h4 {
+  display: inline;
+  margin: 0;
+}
+.mekanicers .gadget-item .gadget-toggle .gadget-chevron {
+  font-size: 10px;
+  margin-left: 6px;
+  color: #B9AE93;
+  transition: transform 0.15s ease;
+}
+.mekanicers .gadget-item.expanded .gadget-chevron {
+  transform: rotate(180deg);
+}
+.mekanicers .gadget-item .item-blueprint {
+  flex: 1.5;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-item .item-blueprint input {
+  width: 100%;
+}
+.mekanicers .gadget-item .item-total-complexity {
+  flex: 0 0 50px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-item .item-total-complexity .complexity-total {
+  font-weight: bold;
+  color: #E7DFC6;
+}
+.mekanicers .gadget-item .gadget-details {
+  display: none;
+  padding: 6px 6px 2px 34px;
+}
+.mekanicers .gadget-item.expanded .gadget-details {
+  display: block;
+}
+.mekanicers .gadget-item .gadget-augments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(185, 174, 147, 0.3);
+  font-size: 12px;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry:last-child {
+  border-bottom: none;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry .augment-name {
+  flex: 1;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry .augment-cost {
+  flex: 0 0 auto;
+  font-weight: bold;
+  color: #E7DFC6;
+}
+.mekanicers .items-header .item-blueprint {
+  flex: 1.5;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .items-header .item-total-complexity {
+  flex: 0 0 50px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-augments {
+  margin-top: 4px;
+  padding-left: 24px;
+}
+.mekanicers .gadget-augments .augments-header {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #B9AE93;
+  margin-bottom: 2px;
+}
+.mekanicers .gadget-augments .augments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mekanicers .gadget-augments .augments-list .item {
+  border-bottom: 1px solid rgba(185, 174, 147, 0.3);
+  padding: 2px 0;
+}
+.mekanicers .gadget-augments .augments-list .item:last-child {
+  border-bottom: none;
+}
+.mekanicers .gadget-augments .augments-list .augment-name {
+  flex: 2;
+  text-align: left;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-augments .augments-list .augment-name input {
+  width: 100%;
+}
+.mekanicers .gadget-augments .augments-list .augment-complexity {
+  flex: 0 0 60px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-augments .augments-list .augment-complexity input {
+  width: 100%;
+}
+.mekanicers .gadget-augments .augments-list .item-controls {
+  flex: 0 0 80px;
 }
 .mekanicers .effects .item .effect-source,
 .mekanicers .effects .item .effect-duration,
@@ -969,14 +1438,7 @@
 }
 .mekanicers .boon-stats .boon-stat select {
   width: 64px;
-  text-align: center;
   font-size: 14px;
-  font-weight: bold;
-  border: 1px solid #B9AE93;
-  background: #1E1F22;
-  padding: 1px 2px;
-  border-radius: 3px;
-  height: 22px;
 }
 .mekanicers .boon-description {
   display: flex;
@@ -989,6 +1451,159 @@
   flex: 1;
   overflow: hidden;
   height: auto;
+}
+.mekanicers .gadget-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+.mekanicers .gadget-total .resource-label {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.mekanicers .gadget-total .complexity-total {
+  font-size: 22px;
+  font-weight: bold;
+  color: #E7DFC6;
+}
+.mekanicers .gadget-stats {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.mekanicers .gadget-stats .gadget-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2B2E34;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 4px 10px;
+  min-width: 60px;
+}
+.mekanicers .gadget-stats .gadget-stat .resource-label {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 3px;
+}
+.mekanicers .gadget-stats .gadget-stat input[type=text],
+.mekanicers .gadget-stats .gadget-stat input[type=number] {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  padding: 1px 2px;
+  border-radius: 3px;
+  height: 22px;
+}
+.mekanicers .gadget-stats .gadget-stat input[type=number] {
+  width: 48px;
+}
+.mekanicers .gadget-stats .gadget-stat select {
+  width: 100%;
+  font-size: 12px;
+}
+.mekanicers .augments-section h3 {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #E7DFC6;
+  margin: 0 0 6px 0;
+  border-bottom: 1px solid #B9AE93;
+  padding-bottom: 4px;
+}
+.mekanicers .augments-section .augments-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mekanicers .augments-section .augments-list .items-header {
+  height: 24px;
+  margin: 2px 0;
+  padding: 0;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px groove #B9AE93;
+  font-weight: bold;
+}
+.mekanicers .augments-section .augments-list .items-header > * {
+  font-size: 11px;
+  text-align: center;
+}
+.mekanicers .augments-section .augments-list .items-header .augment-name {
+  flex: 2;
+  padding-left: 5px;
+  text-align: left;
+}
+.mekanicers .augments-section .augments-list .items-header .augment-complexity {
+  flex: 0 0 60px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 11px;
+  padding: 0 4px;
+}
+.mekanicers .augments-section .augments-list .items-header .augment-controls {
+  flex: 0 0 40px;
+}
+.mekanicers .augments-section .augments-list .item {
+  align-items: center;
+  padding: 0 2px;
+  border-bottom: 1px solid #B9AE93;
+}
+.mekanicers .augments-section .augments-list .item:last-child {
+  border-bottom: none;
+}
+.mekanicers .augments-section .augments-list .augment-name {
+  flex: 2;
+  padding: 0 4px;
+}
+.mekanicers .augments-section .augments-list .augment-name input {
+  width: 100%;
+}
+.mekanicers .augments-section .augments-list .augment-complexity {
+  flex: 0 0 60px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .augments-section .augments-list .augment-complexity input {
+  width: 100%;
+}
+.mekanicers .augments-section .augments-list .augment-controls {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mekanicers .augments-section .augments-list .augment-controls a {
+  font-size: 12px;
+  text-align: center;
+  margin: 0 4px;
+}
+.mekanicers .augments-section .augments-list .augments-footer {
+  padding: 4px 2px;
 }
 
 /* Global styles (not scoped to .mekanicers — have their own wrapper) */
@@ -1082,67 +1697,249 @@
 
 .mekanicers-roll-result {
   font-family: "Roboto", sans-serif;
-  margin-top: 8px;
+  background: #1E1F22;
+  color: #E7DFC6;
+  border: 2px groove #B9AE93;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 6px;
 }
 .mekanicers-roll-result .dice-pool {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: center;
   margin-bottom: 10px;
+  justify-content: center;
 }
 .mekanicers-roll-result .die-box {
-  width: 32px;
-  height: 32px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
   font-size: 14px;
   font-weight: bold;
-  background: #2B2E34;
-  border: 2px groove #B9AE93;
-  border-radius: 6px;
+  border: 1px solid #B9AE93;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
   color: #E7DFC6;
 }
 .mekanicers-roll-result .die-box.success {
-  border-color: #4CAF50;
-  color: #4CAF50;
-  box-shadow: 0 0 6px rgba(76, 175, 80, 0.25);
+  background: rgba(92, 141, 137, 0.15);
+  border-color: #5C8D89;
+  color: rgb(133.6673819742, 175.8326180258, 172.3905579399);
 }
 .mekanicers-roll-result .die-box.max {
-  background: #B08D57;
-  color: #1E1F22;
-  border-color: #B08D57;
+  background: rgba(214, 179, 106, 0.15);
+  border-color: #D6B36A;
+  color: #D6B36A;
+  box-shadow: 0 0 6px rgba(214, 179, 106, 0.25);
 }
-.mekanicers-roll-result .die-box.max.success {
-  border-color: #4CAF50;
-  box-shadow: 0 0 6px rgba(76, 175, 80, 0.35);
+.mekanicers-roll-result .die-box.success.max {
+  background: rgba(214, 179, 106, 0.2);
+  border-color: #D6B36A;
+  color: #D6B36A;
 }
 .mekanicers-roll-result .success-summary {
   text-align: center;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
+  letter-spacing: 0.3px;
   color: #E7DFC6;
-  background: #2B2E34;
-  border: 2px groove #B9AE93;
-  border-radius: 6px;
-  padding: 6px 12px;
-}
-.mekanicers-roll-result .success-summary.crit {
-  border-color: #4CAF50;
-  color: #4CAF50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  padding-top: 6px;
+  border-top: 1px solid rgba(185, 174, 147, 0.3);
 }
 .mekanicers-roll-result .success-summary .success-count {
   font-size: 18px;
+  color: #B08D57;
+  margin-right: 4px;
 }
-.mekanicers-roll-result .crit-tag {
+.mekanicers-roll-result .success-summary .crit-tag {
+  color: #D6B36A;
+  margin-left: 4px;
+}
+.mekanicers-roll-result .success-summary.crit {
+  color: #D6B36A;
+}
+
+.mekanicers-gadget-dialog {
+  font-family: "Roboto", sans-serif;
+}
+.mekanicers-gadget-dialog .dialog-content {
+  padding: 8px 10px 4px;
+}
+.mekanicers-gadget-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mekanicers-gadget-dialog .form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #B9AE93;
+}
+.mekanicers-gadget-dialog .form-group:last-child {
+  border-bottom: none;
+}
+.mekanicers-gadget-dialog .form-group label {
+  flex: 1;
   font-size: 11px;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-left: 4px;
-  color: #4CAF50;
+  color: #E7DFC6;
+  margin: 0;
 }
+.mekanicers-gadget-dialog .form-group input[type=text],
+.mekanicers-gadget-dialog .form-group input[type=number] {
+  flex: 1;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  color: #E7DFC6;
+  border-radius: 3px;
+  padding: 1px 4px;
+  height: 24px;
+}
+.mekanicers-gadget-dialog .form-group input[type=text]:focus,
+.mekanicers-gadget-dialog .form-group input[type=number]:focus {
+  outline: none;
+  border-color: #B9AE93;
+  box-shadow: 0 0 0 2px rgba(185, 174, 147, 0.35);
+}
+.mekanicers-gadget-dialog .form-group input[type=number] {
+  width: 64px;
+  flex: 0 0 64px;
+  text-align: center;
+}
+.mekanicers-gadget-dialog .form-group select {
+  flex: 1;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  color: #E7DFC6;
+  border-radius: 3px;
+  padding: 1px 4px;
+  height: 24px;
+}
+.mekanicers-gadget-dialog .form-group select:focus {
+  outline: none;
+  border-color: #B9AE93;
+  box-shadow: 0 0 0 2px rgba(185, 174, 147, 0.35);
+}
+.mekanicers-gadget-dialog .augment-section {
+  margin-top: 8px;
+}
+.mekanicers-gadget-dialog .augment-section h4 {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #E7DFC6;
+  margin: 0 0 6px 0;
+  border-bottom: 1px solid #B9AE93;
+  padding-bottom: 4px;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(185, 174, 147, 0.5);
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row:last-child {
+  border-bottom: none;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row .dialog-aug-name {
+  flex: 1;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  color: #E7DFC6;
+  border-radius: 3px;
+  padding: 1px 4px;
+  height: 22px;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row .dialog-aug-complexity {
+  flex: 0 0 60px;
+  width: 60px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #B9AE93;
+  background: #1E1F22;
+  color: #E7DFC6;
+  border-radius: 3px;
+  padding: 1px 4px;
+  height: 22px;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row .dialog-remove-augment {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  color: #B9AE93;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-augment-list .dialog-augment-row .dialog-remove-augment:hover {
+  color: #c0392b;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-add-augment {
+  margin-top: 6px;
+  font-family: "Roboto", sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px groove #B9AE93;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #E7DFC6;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.mekanicers-gadget-dialog .augment-section .dialog-add-augment:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.mekanicers-gadget-dialog .dialog-buttons {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #B9AE93;
+}
+.mekanicers-gadget-dialog .dialog-buttons button {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px groove #B9AE93;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.mekanicers-gadget-dialog .dialog-buttons button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .mekanicers .tag-bubble {
   display: inline-flex;
   align-items: center;

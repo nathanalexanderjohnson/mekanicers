@@ -65,7 +65,8 @@
       "feature": "Feature",
       "spell": "Spell",
       "wound": "Wound",
-      "armor": "Armor"
+      "armor": "Armor",
+      "gadget": "Gadget"
     }
   }
 }

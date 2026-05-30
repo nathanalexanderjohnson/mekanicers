@@ -147,6 +147,6 @@
     }
   },
   "Item": {
-    "types": ["item", "feature", "boon", "maneuver", "wound", "armor"]
+    "types": ["item", "feature", "boon", "maneuver", "wound", "armor", "gadget"]
   }
 }

@@ -92,6 +92,32 @@
     font-size: 12px;
   }
 
+  .item-study {
+    flex: 1;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+
+    select {
+      width: 100%;
+    }
+  }
+
+  .item-level {
+    flex: 0 0 60px;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+
+    input {
+      width: 100%;
+    }
+  }
+
   // Section Header
   .items-header {
     height: 28px;
@@ -115,7 +141,7 @@
 
 // Example style for Mekanicers (can be removed if not needed).
 .item-formula {
-  
+
   flex: 0 0 200px;
   padding: 0 8px;
 }
@@ -132,4 +158,176 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+// Gadget-specific styles
+.gadget-item {
+  padding: 4px 2px;
+
+  .gadget-summary {
+    align-items: center;
+  }
+
+  .gadget-toggle {
+    cursor: pointer;
+
+    h4 {
+      display: inline;
+      margin: 0;
+    }
+
+    .gadget-chevron {
+      font-size: 10px;
+      margin-left: 6px;
+      color: $c-secondary;
+      transition: transform 0.15s ease;
+    }
+  }
+
+  &.expanded .gadget-chevron {
+    transform: rotate(180deg);
+  }
+
+  .item-blueprint {
+    flex: 1.5;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .item-total-complexity {
+    flex: 0 0 50px;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+
+    .complexity-total {
+      font-weight: bold;
+      color: $c-text;
+    }
+  }
+
+  .gadget-details {
+    display: none;
+    padding: 6px 6px 2px 34px;
+  }
+
+  &.expanded .gadget-details {
+    display: block;
+  }
+
+  .gadget-augments {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .augment-entry {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 2px 0;
+      border-bottom: 1px solid rgba($c-secondary, 0.3);
+      font-size: 12px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .augment-name {
+        flex: 1;
+      }
+
+      .augment-cost {
+        flex: 0 0 auto;
+        font-weight: bold;
+        color: $c-dark;
+      }
+    }
+  }
+}
+
+// Align gadget list header columns with data rows
+.items-header {
+  .item-blueprint {
+    flex: 1.5;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+  }
+
+  .item-total-complexity {
+    flex: 0 0 50px;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+  }
+}
+
+.gadget-augments {
+  margin-top: 4px;
+  padding-left: 24px;
+
+  .augments-header {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: $c-secondary;
+    margin-bottom: 2px;
+  }
+
+  .augments-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .item {
+      border-bottom: 1px solid rgba($c-secondary, 0.3);
+      padding: 2px 0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .augment-name {
+      flex: 2;
+      text-align: left;
+      font-size: 12px;
+      padding: 0 4px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .augment-complexity {
+      flex: 0 0 60px;
+      text-align: center;
+      border-left: 1px solid $c-secondary;
+      border-right: 1px solid $c-secondary;
+      font-size: 12px;
+      padding: 0 4px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .item-controls {
+      flex: 0 0 80px;
+    }
+  }
 }

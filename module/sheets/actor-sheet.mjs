@@ -112,8 +112,13 @@ export class MekanicersActorSheet extends ActorSheet {
    * @param {object} context The context object to mutate
    */
   _prepareCharacterData(context) {
-    // This is where you can enrich character-specific editor fields
-    // or setup anything else that's specific to this type
+    // Sort gifts and aspects by level for display
+    if (context.system.gifts) {
+      context.system.gifts.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+    }
+    if (context.system.aspects) {
+      context.system.aspects.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+    }
   }
 
   /**
@@ -130,6 +135,7 @@ export class MekanicersActorSheet extends ActorSheet {
     const banes = [];
     const wounds = [];
     const armors = [];
+    const gadgets = [];
     // Iterate through items, allocating to containers
     for (let i of context.items) {
       i.img = i.img || Item.DEFAULT_ICON;
@@ -160,6 +166,11 @@ export class MekanicersActorSheet extends ActorSheet {
         } else if (i.system.type === 'bane') {
           banes.push(i);
         }
+      }
+      // Append to gadgets.
+      else if (i.type === 'gadget') {
+        i.system.totalComplexity = this.actor.items.get(i._id)?.system?.totalComplexity ?? 0;
+        gadgets.push(i);
       }
     }
 
@@ -197,6 +208,7 @@ export class MekanicersActorSheet extends ActorSheet {
     context.banes = banes;
     context.armors = armors;
     context.armorTracker = armorTracker;
+    context.gadgets = gadgets;
   }
 
   /* -------------------------------------------- */
@@ -258,6 +270,166 @@ export class MekanicersActorSheet extends ActorSheet {
       const li = $(a).parents('.item');
       const item = this.actor.items.get(li.data('itemId'));
       item.update({ [`system.${location}`]: !item.system[location] });
+    });
+
+    // Sorcerer curse dot rating
+    html.on('click', '.sorcerer-curse-dot', (ev) => {
+      const value = parseInt(ev.currentTarget.dataset.value);
+      const current = this.actor.system.curse ?? 0;
+      const newValue = current === value ? 0 : value;
+      this.actor.update({ 'system.curse': newValue });
+    });
+
+    // Sorcerer curse title inline editing
+    html.on('dblclick', '.curse-label-display', (ev) => {
+      const wrapper = $(ev.currentTarget).closest('.curse-label-wrapper');
+      wrapper.addClass('editing');
+      wrapper.find('.curse-title-input').focus().select();
+    });
+
+    html.on('click', '.curse-title-save', (ev) => {
+      const wrapper = $(ev.currentTarget).closest('.curse-label-wrapper');
+      const newValue = wrapper.find('.curse-title-input').val();
+      this.actor.update({ 'system.curseTitle': newValue });
+      wrapper.removeClass('editing');
+    });
+
+    html.on('click', '.curse-title-cancel', (ev) => {
+      $(ev.currentTarget).closest('.curse-label-wrapper').removeClass('editing');
+    });
+
+    html.on('keydown', '.curse-title-input', (ev) => {
+      const wrapper = $(ev.currentTarget).closest('.curse-label-wrapper');
+      if (ev.key === 'Enter') {
+        const newValue = wrapper.find('.curse-title-input').val();
+        this.actor.update({ 'system.curseTitle': newValue });
+        wrapper.removeClass('editing');
+      }
+      if (ev.key === 'Escape') {
+        wrapper.removeClass('editing');
+      }
+    });
+
+    // Sorcerer spell core management
+    html.on('click', '.sorcerer-spellcore-create', (ev) => {
+      const circle = ev.currentTarget.dataset.circle;
+      const arr = [...(this.actor.system.spellCores[circle] || [])];
+      arr.push({ name: 'New Spell Core', fieldOfStudy: '' });
+      this.actor.update({ [`system.spellCores.${circle}`]: arr });
+    });
+
+    html.on('click', '.sorcerer-spellcore-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const circle = li.data('circle');
+      const index = li.data('index');
+      const arr = [...(this.actor.system.spellCores[circle] || [])];
+      arr.splice(index, 1);
+      this.actor.update({ [`system.spellCores.${circle}`]: arr });
+    });
+
+    // Sorcerer aspect management
+    html.on('click', '.sorcerer-aspect-create', (ev) => {
+      const arr = [...(this.actor.system.aspects || [])];
+      arr.push({ name: 'New Aspect', level: 0 });
+      arr.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+      this.actor.update({ 'system.aspects': arr });
+    });
+
+    html.on('click', '.sorcerer-aspect-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const index = li.data('index');
+      const arr = [...(this.actor.system.aspects || [])];
+      arr.splice(index, 1);
+      this.actor.update({ 'system.aspects': arr });
+    });
+
+    html.on('change', '.aspect-level', (ev) => {
+      const arr = [...(this.actor.system.aspects || [])];
+      arr.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+      this.actor.update({ 'system.aspects': arr });
+    });
+
+    // Sorcerer gift management
+    html.on('click', '.sorcerer-gift-create', (ev) => {
+      const arr = [...(this.actor.system.gifts || [])];
+      arr.push({ name: 'New Gift', level: 0 });
+      arr.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+      this.actor.update({ 'system.gifts': arr });
+    });
+
+    html.on('click', '.sorcerer-gift-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const index = li.data('index');
+      const arr = [...(this.actor.system.gifts || [])];
+      arr.splice(index, 1);
+      this.actor.update({ 'system.gifts': arr });
+    });
+
+    html.on('change', '.gift-level', (ev) => {
+      const arr = [...(this.actor.system.gifts || [])];
+      arr.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
+      this.actor.update({ 'system.gifts': arr });
+    });
+
+    // Mekanicer breakthrough management
+    html.on('click', '.mekanicer-breakthrough-create', (ev) => {
+      const field = ev.currentTarget.dataset.field;
+      const arr = [...(this.actor.system.breakthroughs[field] || [])];
+      arr.push({ name: 'New Breakthrough' });
+      this.actor.update({ [`system.breakthroughs.${field}`]: arr });
+    });
+
+    html.on('click', '.mekanicer-breakthrough-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const field = li.data('field');
+      const index = li.data('index');
+      const arr = [...(this.actor.system.breakthroughs[field] || [])];
+      arr.splice(index, 1);
+      this.actor.update({ [`system.breakthroughs.${field}`]: arr });
+    });
+
+    // Mekanicer expertise management
+    html.on('click', '.mekanicer-expertise-create', (ev) => {
+      const field = ev.currentTarget.dataset.field;
+      const arr = [...(this.actor.system.expertise[field] || [])];
+      arr.push({ name: 'New Expertise' });
+      this.actor.update({ [`system.expertise.${field}`]: arr });
+    });
+
+    html.on('click', '.mekanicer-expertise-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const field = li.data('field');
+      const index = li.data('index');
+      const arr = [...(this.actor.system.expertise[field] || [])];
+      arr.splice(index, 1);
+      this.actor.update({ [`system.expertise.${field}`]: arr });
+    });
+
+    // Mekanicer gadget management (gadgets are Foundry Items)
+    html.on('click', '.mekanicer-gadget-create', async (ev) => {
+      await Item.create({
+        name: 'New Gadget',
+        type: 'gadget',
+        system: { baseBlueprint: '', baseComplexity: 0, wireType: 'copper', augments: [] }
+      }, { parent: this.actor });
+    });
+
+    html.on('click', '.mekanicer-gadget-delete', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.delete();
+      li.slideUp(200, () => this.render(false));
+    });
+
+    html.on('click', '.mekanicer-gadget-edit', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.sheet.render(true);
+    });
+
+    html.on('click', '.gadget-toggle', (ev) => {
+      const li = $(ev.currentTarget).closest('.gadget-item');
+      li.toggleClass('expanded');
     });
 
     // Delete Inventory Item

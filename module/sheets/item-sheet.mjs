@@ -86,6 +86,11 @@ export class MekanicersItemSheet extends ItemSheet {
       context.hasTags = currentTags.length > 0;
     }
 
+    // Inject derived total complexity for gadget items
+    if (this.item.type === 'gadget') {
+      context.system.totalComplexity = this.item.system.totalComplexity;
+    }
+
     return context;
   }
 
@@ -127,6 +132,23 @@ export class MekanicersItemSheet extends ItemSheet {
           .map((_, el) => el.dataset.tag).get();
         this._tagDropdownOpen = true; // keep panel open across the re-render
         this.item.update({ 'system.tags': tags });
+      });
+    }
+
+    // Gadget augment management
+    if (this.item.type === 'gadget') {
+      html.on('click', '.gadget-augment-create', (ev) => {
+        const augments = [...(this.item.system.augments || [])];
+        augments.push({ name: '', complexity: 0 });
+        this.item.update({ 'system.augments': augments });
+      });
+
+      html.on('click', '.gadget-augment-delete', (ev) => {
+        const li = $(ev.currentTarget).parents('.item');
+        const index = li.data('index');
+        const augments = [...(this.item.system.augments || [])];
+        augments.splice(index, 1);
+        this.item.update({ 'system.augments': augments });
       });
     }
 

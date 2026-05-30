@@ -18,9 +18,25 @@
   color: $c-text;
 
   input,
-  textarea,
+  textarea {
+    color: $c-text;
+  }
+
   select {
     color: $c-text;
+    background: $c-background;
+    border: 1px solid $c-faint;
+    border-radius: 3px;
+    padding: 1px 2px;
+    height: 22px;
+    font-family: $font-primary;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+
+    option {
+      background: #000;
+    }
   }
 
   @import 'components/forms';
@@ -33,6 +49,8 @@
 
 /* Global styles (not scoped to .mekanicers — have their own wrapper) */
 @import 'components/roll-dialog';
+@import 'components/roll-results';
+@import 'components/gadget-dialog';
 @import 'components/tag-dropdown';
 
 /* Ensure Foundry's .window-content uses the theme background */

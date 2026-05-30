@@ -52,7 +52,8 @@ Hooks.once('init', function () {
     boon: models.MekanicersBoon,
     maneuver: models.MekanicersManeuver,
     wound: models.MekanicersWound,
-    armor: models.MekanicersArmor
+    armor: models.MekanicersArmor,
+    gadget: models.MekanicersGadget
   };
   CONFIG.Item.typeLabels = {
     item: 'Item',
@@ -60,7 +61,8 @@ Hooks.once('init', function () {
     boon: 'Boon',
     maneuver: 'Maneuver',
     wound: 'Wound',
-    armor: 'Armor'
+    armor: 'Armor',
+    gadget: 'Gadget'
   };
 
   // Set type-specific default icons so items don't use the bag icon.
@@ -69,6 +71,7 @@ Hooks.once('init', function () {
     maneuver: 'icons/svg/sword.svg',
     armor: 'icons/svg/shield.svg',
     boon: 'icons/svg/regen.svg',
+    gadget: 'icons/tools/smithing/crucible.webp',
   });
 
   // Active Effects are never copied to the Actor,
@@ -218,6 +221,9 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 });
 Handlebars.registerHelper('equals', function (a, b) {
   return a === b;
+});
+Handlebars.registerHelper('gte', function (a, b) {
+  return a >= b;
 });
 Handlebars.registerHelper('capitalize', function (str) {
   if (typeof str !== 'string') return '';

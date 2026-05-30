@@ -53,6 +53,123 @@ export default class MekanicersCharacter extends MekanicersActorBase {
       max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
     });
 
+    schema.magicType = new fields.StringField({
+      required: true,
+      initial: 'none',
+      choices: ['none', 'mekanicer', 'sorcerer']
+    });
+
+    schema.thesis = new fields.StringField({
+      required: true,
+      blank: true
+    });
+
+    schema.arithmeticSpark = new fields.NumberField({
+      ...requiredInteger,
+      initial: 0,
+      min: 0,
+      max: 10
+    });
+
+    schema.flux = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+    });
+
+    schema.breakthroughs = new fields.SchemaField({
+      kinetics: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      ),
+      matrices: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      ),
+      thermalworks: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      )
+    });
+
+    schema.expertise = new fields.SchemaField({
+      kinetics: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      ),
+      matrices: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      ),
+      thermalworks: new fields.ArrayField(
+        new fields.SchemaField({
+          name: new fields.StringField({ initial: '' })
+        })
+      )
+    });
+
+
+
+    schema.curse = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 5 });
+    schema.curseTitle = new fields.StringField({ required: true, blank: true, initial: 'Curse' });
+
+    schema.arcaneMight = new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 10 });
+
+    schema.sorcererSource = new fields.StringField({ required: true, blank: true, initial: '' });
+
+    schema.fieldOfStudy = new fields.StringField({ required: true, blank: true, initial: '' });
+
+    schema.senseTheUnseen = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+    });
+
+    schema.arcaneLore = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+    });
+
+    schema.scourge = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+    });
+
+    schema.mentalStrain = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+    });
+
+    const makeSpellCoreEntry = () => new fields.SchemaField({
+      name: new fields.StringField({ initial: '' }),
+      fieldOfStudy: new fields.StringField({ initial: '' })
+    });
+
+    schema.spellCores = new fields.SchemaField({
+      first:   new fields.ArrayField(makeSpellCoreEntry()),
+      second:  new fields.ArrayField(makeSpellCoreEntry()),
+      third:   new fields.ArrayField(makeSpellCoreEntry()),
+      fourth:  new fields.ArrayField(makeSpellCoreEntry()),
+      fifth:   new fields.ArrayField(makeSpellCoreEntry()),
+      sixth:   new fields.ArrayField(makeSpellCoreEntry()),
+      seventh: new fields.ArrayField(makeSpellCoreEntry())
+    });
+
+    schema.gifts = new fields.ArrayField(
+      new fields.SchemaField({
+        name: new fields.StringField({ initial: '' }),
+        level: new fields.NumberField({ initial: 0, min: 0, integer: true })
+      })
+    );
+
+    schema.aspects = new fields.ArrayField(
+      new fields.SchemaField({
+        name: new fields.StringField({ initial: '' }),
+        level: new fields.NumberField({ initial: 0, min: 0, integer: true })
+      })
+    );
+
     return schema;
   }
 
