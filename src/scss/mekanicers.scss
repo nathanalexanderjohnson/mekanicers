@@ -1,0 +1,61 @@
+// Add custom fonts by visiting and search https://fonts.google.com
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+// Import utilities.
+@import 'utils/typography';
+@import 'utils/colors';
+@import 'utils/mixins';
+@import 'utils/variables';
+
+/* Global styles */
+@import 'global/window';
+@import 'global/grid';
+@import 'global/flex';
+
+/* Styles limited to mekanicers sheets */
+.mekanicers {
+  background: $c-background;
+  color: $c-text;
+
+  input,
+  textarea {
+    color: $c-text;
+  }
+
+  select {
+    color: $c-text;
+    background: $c-background;
+    border: 1px solid $c-faint;
+    border-radius: 3px;
+    padding: 1px 2px;
+    height: 22px;
+    font-family: $font-primary;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+
+    option {
+      background: #000;
+    }
+  }
+
+  @import 'components/forms';
+  @import 'components/resource';
+  @import 'components/items';
+  @import 'components/effects';
+  @import 'components/armor-tracker';
+  @import 'components/item-sheet';
+}
+
+/* Global styles (not scoped to .mekanicers — have their own wrapper) */
+@import 'components/roll-dialog';
+@import 'components/spellcast-dialog';
+@import 'components/roll-results';
+@import 'components/gadget-dialog';
+@import 'components/tag-dropdown';
+
+/* Ensure Foundry's .window-content uses the theme background */
+.mekanicers .window-content {
+  background: $c-background;
+  color: $c-text;
+}

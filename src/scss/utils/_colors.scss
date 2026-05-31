@@ -1,0 +1,19 @@
+$c-white: #fff;
+$c-black: #000;
+
+// ─── Mekanicers Theme Palette ─────────────────────────────────────────
+$c-background: #1E1F22;    // Charcoal Iron
+$c-panel: #2B2E34;         // Smoked Steel
+$c-primary: #B08D57;       // Antique Brass
+$c-highlight: #D6B36A;      // Polished Gold Brass
+$c-text: #E7DFC6;          // Warm Ivory
+$c-secondary: #B9AE93;     // Dusty Beige
+$c-danger: #8C3B2F;        // Oxide Red
+$c-success: #5C8D89;        // Steam Teal
+
+// Legacy aliases so existing component styles migrate automatically
+$c-dark: $c-text;
+$c-faint: $c-secondary;
+$c-beige: $c-secondary;
+$c-tan: $c-secondary;
+$c-brass: $c-primary;
