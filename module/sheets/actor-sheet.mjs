@@ -2,6 +2,7 @@ import {
   onManageActiveEffect,
   prepareActiveEffectCategories,
 } from '../helpers/effects.mjs';
+import { SpellcastDialog } from '../dialogs/spellcast-dialog.mjs';
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -316,6 +317,15 @@ export class MekanicersActorSheet extends ActorSheet {
       const arr = [...(this.actor.system.spellCores[circle] || [])];
       arr.push({ name: 'New Spell Core', fieldOfStudy: '' });
       this.actor.update({ [`system.spellCores.${circle}`]: arr });
+    });
+
+    html.on('click', '.sorcerer-spellcore-cast', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const circle = li.data('circle');
+      const index = li.data('index');
+      const coreData = this.actor.system.spellCores[circle]?.[index];
+      if (!coreData) return;
+      new SpellcastDialog(this.actor, coreData).render(true);
     });
 
     html.on('click', '.sorcerer-spellcore-delete', (ev) => {

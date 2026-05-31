@@ -13,6 +13,10 @@ export const preloadHandlebarsTemplates = async function () {
     'systems/mekanicers/templates/actor/parts/actor-effects.hbs',
     'systems/mekanicers/templates/actor/parts/actor-armor.hbs',
     'systems/mekanicers/templates/actor/parts/actor-armor-tracker.hbs',
+    'systems/mekanicers/templates/actor/parts/actor-mekanicer-tab.hbs',
+    'systems/mekanicers/templates/actor/parts/actor-sorcerer-tab.hbs',
+    // Dialogs
+    'systems/mekanicers/templates/dialogs/spellcast-dialog.hbs',
     // Item partials
     'systems/mekanicers/templates/item/parts/item-effects.hbs',
   ]);
