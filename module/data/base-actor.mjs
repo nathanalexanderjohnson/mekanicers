@@ -30,8 +30,8 @@ export default class MekanicersActorBase extends MekanicersDataModel {
     // Skills
     schema.skills = new fields.SchemaField(Object.keys(CONFIG.MEKANICERS.skills).reduce((obj, skill) => {
       obj[skill] = new fields.SchemaField({
-        value: new fields.NumberField({ ...requiredInteger, initial: 2, min: 1, max: 14 }),
-        min: new fields.NumberField({ ...requiredInteger, initial: 1 }),
+        value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0, max: 14 }),
+        min: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         max: new fields.NumberField({ ...requiredInteger, initial: 14 })
       });
       return obj;
