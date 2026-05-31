@@ -8,7 +8,7 @@
       "discord": "linkicefang"
     }
   ],
-  "url": "Replace this with a link to your public repository",
+  "url": "https://github.com/nathanalexanderjohnson/mekanicers/",
   "license": "LICENSE.txt",
   "readme": "README.md",
   "bugs": "Replace this with a link to file issues or tickets",
@@ -16,8 +16,8 @@
   "media": [
     {
       "type": "setup",
-      "url": "systems/mekanicers/assets/anvil-impact.png",
-      "thumbnail": "systems/mekanicers/assets/anvil-impact.png"
+      "url": "systems/mekanicers/assets/mekanicers-icon.png",
+      "thumbnail": "systems/mekanicers/assets/mekanicers-icon.png"
     }
   ],
   "version": "1.0.0",
@@ -37,11 +37,11 @@
   "packs": [],
   "packFolders": [],
   "socket": false,
-  "manifest": "Replace this with a link to the /latest release system.json so people can receive updates after they've installed the system",
-  "download": "This must link to a .zip file of the current version",
-  "background": "systems/mekanicers/assets/anvil-impact.png",
-  "gridDistance": 5,
-  "gridUnits": "paces",
+  "manifest": "https://github.com/nathanalexanderjohnson/mekanicers/releases/latest/download/module.json",
+  "download": "https://github.com/nathanalexanderjohnson/mekanicers/releases/download/1.0.0/module.zip",
+  "background": "systems/mekanicers/assets/mekanicers-icon.png",
+  "gridDistance": 1,
+  "gridUnits": "yards",
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": "power"
 }
