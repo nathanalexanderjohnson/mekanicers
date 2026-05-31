@@ -37,103 +37,103 @@
         },
         "skills": {
           "athletics": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "unarmed": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "melee": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "ranged": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "stealth": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "survival": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "riding": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "persuasion": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "intimidation": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "subterfuge": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "performance": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "etiquette": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "awareness": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "empathy": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "leadership": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "tactics": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "scholarship": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "stewardship": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "crafting": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           },
           "medicine": {
-            "value": 2,
-            "min": 1,
+            "value": 0,
+            "min": 0,
             "max": 14
           }
         }
