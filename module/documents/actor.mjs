@@ -43,6 +43,8 @@ export class MekanicersActor extends Actor {
       let totalWeight = 0;
       for (const item of this.items) {
         if (item.type === 'item') {
+          const isEquipped = Boolean(item.system?.equipped);
+          if (!isEquipped) continue;
           const itemWeight = Number(item.system?.weight ?? 0);
           const itemQuantity = Number(item.system?.quantity ?? 1);
           if (!Number.isNaN(itemWeight) && !Number.isNaN(itemQuantity)) {
@@ -52,6 +54,12 @@ export class MekanicersActor extends Actor {
           const armorWeight = Number(item.system?.weight ?? 0);
           if (!Number.isNaN(armorWeight)) {
             totalWeight += armorWeight;
+          }
+        } else if (item.type === 'gadget') {
+          const gadgetWeight = Number(item.system?.weight ?? 0);
+          const isEquipped = Boolean(item.system?.equipped);
+          if (isEquipped && !Number.isNaN(gadgetWeight)) {
+            totalWeight += gadgetWeight;
           }
         }
       }

@@ -9,6 +9,7 @@ export default class MekanicersItem extends MekanicersItemBase {
 
     schema.quantity = new fields.NumberField({ ...requiredInteger, initial: 1, min: 1 });
     schema.weight = new fields.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
+    schema.equipped = new fields.BooleanField({ required: true, initial: false });
 
     // Break down roll formula into three independent fields
     schema.roll = new fields.SchemaField({

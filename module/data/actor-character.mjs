@@ -79,17 +79,20 @@ export default class MekanicersCharacter extends MekanicersActorBase {
     schema.breakthroughs = new fields.SchemaField({
       kinetics: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       ),
       matrices: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       ),
       thermalworks: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       )
     });
@@ -97,17 +100,20 @@ export default class MekanicersCharacter extends MekanicersActorBase {
     schema.expertise = new fields.SchemaField({
       kinetics: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       ),
       matrices: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       ),
       thermalworks: new fields.ArrayField(
         new fields.SchemaField({
-          name: new fields.StringField({ initial: '' })
+          name: new fields.StringField({ initial: '' }),
+          level: new fields.NumberField({ initial: 0, integer: true })
         })
       )
     });
@@ -137,13 +143,13 @@ export default class MekanicersCharacter extends MekanicersActorBase {
     });
 
     schema.mentalStrain = new fields.SchemaField({
-      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
-      max: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
+      value: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 })
     });
 
     const makeSpellCoreEntry = () => new fields.SchemaField({
       name: new fields.StringField({ initial: '' }),
-      fieldOfStudy: new fields.StringField({ initial: '' })
+      fieldOfStudy: new fields.StringField({ initial: '' }),
+      ritual: new fields.BooleanField({ initial: false })
     });
 
     schema.spellCores = new fields.SchemaField({
@@ -199,7 +205,14 @@ export default class MekanicersCharacter extends MekanicersActorBase {
     }
 
     if (this.stress) {
-      this.stress.max = 4 + insight + will;
+      let stressMax = 4 + insight + will;
+      if (this.magicType === 'sorcerer') {
+        stressMax += this.arcaneMight ** 2;
+        if (this.mentalStrain) {
+          stressMax -= this.mentalStrain.value ?? 0;
+        }
+      }
+      this.stress.max = Math.max(0, stressMax);
     }
 
     if (this.stamina) {

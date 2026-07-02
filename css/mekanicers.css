@@ -937,6 +937,17 @@
 .mekanicers .items-list .item-study select {
   width: 100%;
 }
+.mekanicers .items-list .item-ritual {
+  flex: 0 0 10%;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .mekanicers .items-list .item-level {
   flex: 0 0 60px;
   text-align: center;
@@ -1049,6 +1060,22 @@
 .mekanicers .gadget-item .gadget-augments .augment-entry:last-child {
   border-bottom: none;
 }
+.mekanicers .gadget-item .gadget-augments .augment-entry.disabled {
+  opacity: 0.5;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry.disabled .augment-name {
+  text-decoration: line-through;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry.disabled .augment-cost {
+  text-decoration: line-through;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry.enabled .augment-name {
+  color: #2ecc71;
+}
+.mekanicers .gadget-item .gadget-augments .augment-entry .augment-toggle {
+  flex: 0 0 auto;
+  cursor: pointer;
+}
 .mekanicers .gadget-item .gadget-augments .augment-entry .augment-name {
   flex: 1;
 }
@@ -1072,6 +1099,32 @@
   border-right: 1px solid #B9AE93;
   font-size: 12px;
   padding: 0 4px;
+}
+.mekanicers .items-header .gadget-equipped {
+  flex: 0 0 40px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-item .gadget-equipped {
+  flex: 0 0 40px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mekanicers .gadget-item .gadget-equipped a {
+  cursor: pointer;
+  color: #E7DFC6;
+}
+.mekanicers .gadget-item .gadget-equipped i {
+  font-size: 14px;
 }
 .mekanicers .gadget-augments {
   margin-top: 4px;
@@ -1115,6 +1168,17 @@
   padding: 0 4px;
 }
 .mekanicers .gadget-augments .augments-list .augment-complexity input {
+  width: 100%;
+}
+.mekanicers .gadget-augments .augments-list .augment-enabled {
+  flex: 0 0 40px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .gadget-augments .augments-list .augment-enabled input {
   width: 100%;
 }
 .mekanicers .gadget-augments .augments-list .item-controls {
@@ -1403,7 +1467,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  flex-wrap: wrap;
   margin-bottom: 8px;
 }
 .mekanicers .boon-stats .boon-stat {
@@ -1412,11 +1475,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex: 1;
   background: #2B2E34;
   border: 2px groove #B9AE93;
   border-radius: 6px;
   padding: 4px 10px;
-  min-width: 60px;
 }
 .mekanicers .boon-stats .boon-stat .resource-label {
   font-size: 9px;
@@ -1480,7 +1543,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  flex-wrap: wrap;
   margin-bottom: 10px;
 }
 .mekanicers .gadget-stats .gadget-stat {
@@ -1489,6 +1551,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  flex: 1;
   background: #2B2E34;
   border: 2px groove #B9AE93;
   border-radius: 6px;
@@ -1520,6 +1583,16 @@
 .mekanicers .gadget-stats .gadget-stat select {
   width: 100%;
   font-size: 12px;
+}
+.mekanicers .gadget-description {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mekanicers .gadget-description .editor {
+  flex: 1;
+  min-height: 200px;
 }
 .mekanicers .augments-section h3 {
   font-size: 11px;
@@ -1562,6 +1635,14 @@
   font-size: 11px;
   padding: 0 4px;
 }
+.mekanicers .augments-section .augments-list .items-header .augment-enabled {
+  flex: 0 0 40px;
+  text-align: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 11px;
+  padding: 0 4px;
+}
 .mekanicers .augments-section .augments-list .items-header .augment-controls {
   flex: 0 0 40px;
 }
@@ -1590,6 +1671,19 @@
 }
 .mekanicers .augments-section .augments-list .augment-complexity input {
   width: 100%;
+}
+.mekanicers .augments-section .augments-list .augment-enabled {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #B9AE93;
+  border-right: 1px solid #B9AE93;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.mekanicers .augments-section .augments-list .augment-enabled input {
+  width: auto;
 }
 .mekanicers .augments-section .augments-list .augment-controls {
   flex: 0 0 40px;
@@ -1891,6 +1985,56 @@
   margin-left: 4px;
 }
 .mekanicers-roll-result .success-summary.crit {
+  color: #D6B36A;
+}
+.mekanicers-roll-result .failure-consequences {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(185, 174, 147, 0.3);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.mekanicers-roll-result .failure-consequences h4 {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #D6B36A;
+  margin: 0 0 6px;
+}
+.mekanicers-roll-result .failure-consequences .failure-margin {
+  margin: 0 0 8px;
+  font-style: italic;
+}
+.mekanicers-roll-result .failure-consequences table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 6px;
+}
+.mekanicers-roll-result .failure-consequences table th, .mekanicers-roll-result .failure-consequences table td {
+  padding: 4px 6px;
+  border: 1px solid rgba(185, 174, 147, 0.4);
+  text-align: left;
+  vertical-align: top;
+}
+.mekanicers-roll-result .failure-consequences table th {
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.06);
+  width: 40px;
+}
+.mekanicers-roll-result .failure-consequences table tr.highlight {
+  background: rgba(214, 179, 106, 0.12);
+}
+.mekanicers-roll-result .failure-consequences .failure-effect {
+  margin: 0;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(185, 174, 147, 0.4);
+  border-radius: 3px;
+}
+.mekanicers-roll-result .failure-consequences .obliteration-note {
+  margin: 4px 0 0;
+  font-style: italic;
   color: #D6B36A;
 }
 

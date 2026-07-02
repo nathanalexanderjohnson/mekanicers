@@ -225,7 +225,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  flex-wrap: wrap;
   margin-bottom: 8px;
 
   .boon-stat {
@@ -234,11 +233,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex: 1;
     background: $c-panel;
     border: $border-groove;
     border-radius: 6px;
     padding: 4px 10px;
-    min-width: 60px;
 
     .resource-label {
       font-size: 9px;
@@ -315,7 +314,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  flex-wrap: wrap;
   margin-bottom: 10px;
 
   .gadget-stat {
@@ -324,6 +322,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    flex: 1;
     background: $c-panel;
     border: $border-groove;
     border-radius: 6px;
@@ -359,6 +358,18 @@
       width: 100%;
       font-size: 12px;
     }
+  }
+}
+
+.gadget-description {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .editor {
+    flex: 1;
+    min-height: 200px;
   }
 }
 
@@ -408,6 +419,15 @@
         padding: 0 4px;
       }
 
+      .augment-enabled {
+        flex: 0 0 40px;
+        text-align: center;
+        border-left: 1px solid $c-secondary;
+        border-right: 1px solid $c-secondary;
+        font-size: 11px;
+        padding: 0 4px;
+      }
+
       .augment-controls {
         flex: 0 0 40px;
       }
@@ -442,6 +462,21 @@
 
       input {
         width: 100%;
+      }
+    }
+
+    .augment-enabled {
+      flex: 0 0 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-left: 1px solid $c-secondary;
+      border-right: 1px solid $c-secondary;
+      font-size: 12px;
+      padding: 0 4px;
+
+      input {
+        width: auto;
       }
     }
 

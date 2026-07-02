@@ -68,7 +68,7 @@
     <div class="form-group scourge-group">
       {{#each scourgeOptions}}
       <label class="checkbox-label">
-        <input type="checkbox" name="scourgeOption" value="{{this.value}}" {{#if this.checked}}checked{{/if}} />
+        <input type="checkbox" name="scourgeOption" value="{{this.value}}" {{#if this.checked}}checked{{/if}} {{#if this.disabled}}disabled{{/if}} />
         <strong>{{this.label}}</strong> — {{this.description}}
       </label>
       {{/each}}

@@ -55,11 +55,15 @@ export class SpellcastDialog extends Application {
       { value: 'unlimited', label: 'Unlimited', complexity: 12 }
     ].map(o => ({ ...o, checked: this._data.range === o.value }));
 
+    const scourgeCurrent = this.actor.system.scourge.value;
+    const scourgeMax = this.actor.system.scourge.max;
+    const hasScourge = scourgeCurrent < scourgeMax;
+
     const scourgeOptions = [
       { value: 'empower', label: 'Empower', description: '+1 + Arcane Might / 2 dice' },
       { value: 'bind', label: 'Bind', description: '-Arcane Might Complexity' },
       { value: 'translocate', label: 'Translocate', description: 'Cast from another tile' }
-    ].map(o => ({ ...o, checked: this._data.scourgeOptions.includes(o.value) }));
+    ].map(o => ({ ...o, checked: hasScourge && this._data.scourgeOptions.includes(o.value), disabled: !hasScourge }));
 
     const potency = potencyOptions.find(p => p.checked) || potencyOptions[0];
     const connections = connectionOptions.filter(c => c.checked);
@@ -216,6 +220,34 @@ export class SpellcastDialog extends Application {
     if (withScourge) flavor += ' [Scourge]';
 
     const resultText = success ? 'Spell Succeeds!' : 'Spell Fails!';
+    const failureMargin = data.finalComplexity - totalSuccesses;
+
+    let failureConsequences = '';
+    if (!success) {
+      const level = Math.min(failureMargin, 8);
+      const effects = {
+        1: 'Suffer: Gain one Pain that lasts until the next time you rest. This Pain cannot be reduced in any way by Sorcery.',
+        2: 'Torn: Roll four dice in a basic test and gain two Stress for each failure.',
+        3: 'Rend: Gain two Mental Strain.',
+        4: 'Curse: Your Curse progresses by one level.',
+        5: 'Shock: You suffer a critical electric wound to your chest as your power surges uncontrollably. If you are wearing metal armor on your chest, increase this to a lethal wound. This wound cannot be treated in any way by Sorcery. Increase the required successes to avoid infection from this wound by one.',
+        6: 'Rupture: Suffer a wound as with Shock. Your Scourge is increased to its maximum value and you cannot reduce it, cast spells, or use your Witch\'s Mark till your wound incurred from this effect is healed. Additionally roll five dice in a basic test and add 2 Stress for each failure.',
+        7: 'Stilled: You forever burn away your ability to use magic. Immediately suffer a mental break and increase your Stress to the highest it can be without driving you catatonic.',
+        8: 'Obliteration: Your magic implodes your body, instantly killing you and dealing 3 + 2 * Arcane Might electric damage to anyone touching you. Any character damaged by this effect not Touched by Fate must roll one dice in a basic test and immediately die on a failure. Sorcerers of Arcane Might III or greater may increase the radius beyond only those touching them by a number of yards equal to their Arcane Might.'
+      };
+      const effect = effects[level] || effects[8];
+      const extraNote = failureMargin >= 8
+        ? '<p class="obliteration-note">If you suffer from this level of failure your spell fails to take form or be cast and is instead released as raw Scourge into the lands around your area of death. Increase ambient Scourge by ten times your Arcane Might.</p>'
+        : '';
+      failureConsequences = `
+        <div class="failure-consequences">
+          <h4>Consequence of Failure</h4>
+          <p class="failure-margin">You fell short by <strong>${failureMargin}</strong> success${failureMargin > 1 ? 'es' : ''}. You may always choose to suffer a higher level failure effect.</p>
+          <p class="failure-effect"><strong>Level ${failureMargin >= 8 ? '8+' : failureMargin} &mdash; ${effect}</strong></p>
+          ${extraNote}
+        </div>
+      `;
+    }
 
     const content = `
       <div class="mekanicers-roll-result">
@@ -227,6 +259,7 @@ export class SpellcastDialog extends Application {
         <div class="success-summary ${critCount > 0 ? 'crit' : ''}">
           <span class="success-count">${totalSuccesses}</span> Successes${critHtml}
         </div>
+        ${failureConsequences}
       </div>
     `;
 
