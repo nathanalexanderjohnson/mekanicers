@@ -105,6 +105,18 @@
     }
   }
 
+  .item-ritual {
+    flex: 0 0 10%;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .item-level {
     flex: 0 0 60px;
     text-align: center;
@@ -241,6 +253,27 @@
         border-bottom: none;
       }
 
+      &.disabled {
+        opacity: 0.5;
+
+        .augment-name {
+          text-decoration: line-through;
+        }
+
+        .augment-cost {
+          text-decoration: line-through;
+        }
+      }
+
+      &.enabled .augment-name {
+        color: #2ecc71;
+      }
+
+      .augment-toggle {
+        flex: 0 0 auto;
+        cursor: pointer;
+      }
+
       .augment-name {
         flex: 1;
       }
@@ -272,6 +305,38 @@
     border-right: 1px solid $c-secondary;
     font-size: 12px;
     padding: 0 4px;
+  }
+
+  .gadget-equipped {
+    flex: 0 0 40px;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+  }
+}
+
+.gadget-item {
+  .gadget-equipped {
+    flex: 0 0 40px;
+    text-align: center;
+    border-left: 1px solid $c-secondary;
+    border-right: 1px solid $c-secondary;
+    font-size: 12px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      cursor: pointer;
+      color: $c-text;
+    }
+
+    i {
+      font-size: 14px;
+    }
   }
 }
 
@@ -315,6 +380,19 @@
 
     .augment-complexity {
       flex: 0 0 60px;
+      text-align: center;
+      border-left: 1px solid $c-secondary;
+      border-right: 1px solid $c-secondary;
+      font-size: 12px;
+      padding: 0 4px;
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .augment-enabled {
+      flex: 0 0 40px;
       text-align: center;
       border-left: 1px solid $c-secondary;
       border-right: 1px solid $c-secondary;

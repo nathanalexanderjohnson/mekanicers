@@ -139,7 +139,7 @@ export class MekanicersItemSheet extends ItemSheet {
     if (this.item.type === 'gadget') {
       html.on('click', '.gadget-augment-create', (ev) => {
         const augments = [...(this.item.system.augments || [])];
-        augments.push({ name: '', complexity: 0 });
+        augments.push({ name: '', complexity: 0, enabled: true });
         this.item.update({ 'system.augments': augments });
       });
 

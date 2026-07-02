@@ -9,10 +9,12 @@ export default class MekanicersGadget extends MekanicersItemBase {
     schema.baseBlueprint = new fields.StringField({ initial: '' });
     schema.baseComplexity = new fields.NumberField({ initial: 0, integer: true });
     schema.wireType = new fields.StringField({ initial: 'copper', choices: ['copper', 'silver', 'gold'] });
+    schema.equipped = new fields.BooleanField({ required: true, initial: false });
     schema.augments = new fields.ArrayField(
       new fields.SchemaField({
         name: new fields.StringField({ initial: '' }),
-        complexity: new fields.NumberField({ initial: 0, integer: true })
+        complexity: new fields.NumberField({ initial: 0, integer: true }),
+        enabled: new fields.BooleanField({ initial: true })
       })
     );
 
@@ -23,7 +25,7 @@ export default class MekanicersGadget extends MekanicersItemBase {
     super.prepareDerivedData();
 
     const wireModifiers = { copper: 0, silver: -1, gold: -2 };
-    const augmentSum = (this.augments || []).reduce((sum, a) => sum + (a.complexity ?? 0), 0);
+    const augmentSum = (this.augments || []).reduce((sum, a) => sum + (a.enabled ? (a.complexity ?? 0) : 0), 0);
     const wireMod = wireModifiers[this.wireType] ?? 0;
     this.totalComplexity = (this.baseComplexity ?? 0) + augmentSum + wireMod;
   }

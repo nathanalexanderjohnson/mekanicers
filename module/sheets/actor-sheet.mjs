@@ -9,6 +9,11 @@ import { SpellcastDialog } from '../dialogs/spellcast-dialog.mjs';
  * @extends {ActorSheet}
  */
 export class MekanicersActorSheet extends ActorSheet {
+  constructor(...args) {
+    super(...args);
+    this._expandedGadgetIds = new Set();
+  }
+
   /** @override */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
@@ -35,6 +40,33 @@ export class MekanicersActorSheet extends ActorSheet {
   /** @override */
   get template() {
     return `systems/mekanicers/templates/actor/actor-${this.actor.type}-sheet.hbs`;
+  }
+
+  /* -------------------------------------------- */
+
+  /** @override */
+  async render(force = false, options = {}) {
+    const focus = this.element?.find ? this.element.find(':focus') : null;
+    const focusName = focus?.attr?.('name') ?? null;
+    const selection = focus?.length && focus[0].setSelectionRange
+      ? [focus[0].selectionStart, focus[0].selectionEnd]
+      : null;
+
+    const result = await super.render(force, options);
+
+    if (focusName) {
+      requestAnimationFrame(() => {
+        const newFocus = this.element?.find ? this.element.find(`[name="${focusName}"]`) : null;
+        if (newFocus?.length) {
+          newFocus.focus();
+          if (selection && newFocus[0].setSelectionRange) {
+            newFocus[0].setSelectionRange(selection[0], selection[1]);
+          }
+        }
+      });
+    }
+
+    return result;
   }
 
   /* -------------------------------------------- */
@@ -120,6 +152,25 @@ export class MekanicersActorSheet extends ActorSheet {
     if (context.system.aspects) {
       context.system.aspects.sort((a, b) => (a.level ?? 0) - (b.level ?? 0));
     }
+
+    // Sort breakthroughs and expertise by level, then alphabetically
+    const sortEntries = (arr) => {
+      if (!arr) return;
+      const sorted = arr
+        .map((entry, i) => ({ ...entry, originalIndex: i }))
+        .sort((a, b) => {
+          const levelDiff = (a.level ?? 0) - (b.level ?? 0);
+          if (levelDiff !== 0) return levelDiff;
+          return (a.name ?? '').localeCompare(b.name ?? '');
+        });
+      arr.length = 0;
+      arr.push(...sorted);
+    };
+
+    for (const field of ['kinetics', 'matrices', 'thermalworks']) {
+      sortEntries(context.system.breakthroughs?.[field]);
+      sortEntries(context.system.expertise?.[field]);
+    }
   }
 
   /**
@@ -171,9 +222,15 @@ export class MekanicersActorSheet extends ActorSheet {
       // Append to gadgets.
       else if (i.type === 'gadget') {
         i.system.totalComplexity = this.actor.items.get(i._id)?.system?.totalComplexity ?? 0;
+        i.expanded = this._expandedGadgetIds.has(i._id);
         gadgets.push(i);
       }
     }
+
+    // Compute total complexity of all equipped gadgets
+    const totalEquippedGadgetComplexity = gadgets.reduce((sum, g) => {
+      return g.system.equipped ? sum + (g.system.totalComplexity ?? 0) : sum;
+    }, 0);
 
     // Compute armor tracker — highest AV per location from all equipped armor pieces.
     const makeZone = () => ({ avb: 0, avp: 0, avs: 0 });
@@ -210,6 +267,7 @@ export class MekanicersActorSheet extends ActorSheet {
     context.armors = armors;
     context.armorTracker = armorTracker;
     context.gadgets = gadgets;
+    context.totalEquippedGadgetComplexity = totalEquippedGadgetComplexity;
   }
 
   /* -------------------------------------------- */
@@ -385,7 +443,7 @@ export class MekanicersActorSheet extends ActorSheet {
     html.on('click', '.mekanicer-breakthrough-create', (ev) => {
       const field = ev.currentTarget.dataset.field;
       const arr = [...(this.actor.system.breakthroughs[field] || [])];
-      arr.push({ name: 'New Breakthrough' });
+      arr.push({ name: 'New Breakthrough', level: 0 });
       this.actor.update({ [`system.breakthroughs.${field}`]: arr });
     });
 
@@ -402,7 +460,7 @@ export class MekanicersActorSheet extends ActorSheet {
     html.on('click', '.mekanicer-expertise-create', (ev) => {
       const field = ev.currentTarget.dataset.field;
       const arr = [...(this.actor.system.expertise[field] || [])];
-      arr.push({ name: 'New Expertise' });
+      arr.push({ name: 'New Expertise', level: 0 });
       this.actor.update({ [`system.expertise.${field}`]: arr });
     });
 
@@ -439,7 +497,35 @@ export class MekanicersActorSheet extends ActorSheet {
 
     html.on('click', '.gadget-toggle', (ev) => {
       const li = $(ev.currentTarget).closest('.gadget-item');
+      const itemId = li.data('itemId');
       li.toggleClass('expanded');
+      if (li.hasClass('expanded')) {
+        this._expandedGadgetIds.add(itemId);
+      } else {
+        this._expandedGadgetIds.delete(itemId);
+      }
+    });
+
+    // Toggle gadget augment enabled state
+    html.on('click', '.augment-toggle', (ev) => {
+      ev.stopPropagation();
+      const li = $(ev.currentTarget).closest('.gadget-item');
+      const item = this.actor.items.get(li.data('itemId'));
+      const index = $(ev.currentTarget).data('augment-index');
+      const augments = item.system.augments || [];
+      if (augments[index]) {
+        const newAugments = foundry.utils.duplicate(augments);
+        newAugments[index].enabled = !newAugments[index].enabled;
+        item.update({ 'system.augments': newAugments });
+      }
+    });
+
+    // Toggle gadget equipped state
+    html.on('click', '.gadget-toggle-equipped', (ev) => {
+      ev.stopPropagation();
+      const li = $(ev.currentTarget).closest('.gadget-item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.update({ 'system.equipped': !item.system.equipped });
     });
 
     // Delete Inventory Item
@@ -581,6 +667,112 @@ export class MekanicersActorSheet extends ActorSheet {
         },
       });
       return roll;
+    }
+
+    // Handle system-value rolls (Arcane Might, Sense the Unseen, Arcane Lore)
+    if (dataset.rollType === 'system-value') {
+      const valuePath = dataset.valuePath;
+      const value = foundry.utils.getProperty(this.actor.system, valuePath);
+      if (!value) return;
+
+      const rollData = this.actor.getRollData();
+
+      const buildOptions = () => {
+        let options = '<option value="">None (Single Roll)</option>';
+        const defaultSecond = dataset.defaultSecond;
+
+        for (const [attrKey, attrLabel] of Object.entries(CONFIG.MEKANICERS.attributes)) {
+          const displayName = game.i18n.localize(attrLabel);
+          const abbr = game.i18n.localize(CONFIG.MEKANICERS.attributeAbbreviations[attrKey]);
+          const selected = attrKey === defaultSecond ? ' selected' : '';
+          options += `<option value="${attrKey}"${selected}>${displayName} (${abbr})</option>`;
+        }
+
+        for (const [skillKey, skillLabel] of Object.entries(CONFIG.MEKANICERS.skills)) {
+          const displayName = game.i18n.localize(skillLabel);
+          options += `<option value="${skillKey}">${displayName}</option>`;
+        }
+
+        return options;
+      };
+
+      const dialogContent = `
+        <form>
+          <div class="form-group">
+            <label>Target Number:</label>
+            <input type="number" name="tn" value="6" min="1" max="10"/>
+          </div>
+          <div class="form-group">
+            <label>Dice Modifier:</label>
+            <input type="number" name="diceMod" value="0"/>
+          </div>
+          <div class="form-group">
+            <label>Combine with (optional):</label>
+            <select name="secondKey">${buildOptions()}</select>
+          </div>
+        </form>
+      `;
+
+      new Dialog({
+        title: `Roll ${dataset.label}`,
+        content: dialogContent,
+        classes: ['mekanicers', 'mekanicers-roll-dialog'],
+        buttons: {
+          roll: {
+            label: "Roll",
+            callback: async (html) => {
+              const tn = parseInt(html.find('[name="tn"]').val()) || 6;
+              const diceMod = parseInt(html.find('[name="diceMod"]').val()) || 0;
+              const secondKey = html.find('[name="secondKey"]').val();
+
+              let totalDice = value;
+              let flavor = `${dataset.label} (TN ${tn})`;
+
+              if (secondKey) {
+                const secondValue = rollData[secondKey]?.value;
+                if (secondValue) {
+                  totalDice += secondValue;
+
+                  let secondLabel = '';
+                  if (CONFIG.MEKANICERS.attributes[secondKey]) {
+                    secondLabel = game.i18n.localize(CONFIG.MEKANICERS.attributes[secondKey]);
+                  } else if (CONFIG.MEKANICERS.skills[secondKey]) {
+                    secondLabel = game.i18n.localize(CONFIG.MEKANICERS.skills[secondKey]);
+                  }
+
+                  flavor = `${dataset.label} + ${secondLabel} (TN ${tn})`;
+                }
+              }
+
+              if (diceMod !== 0) {
+                totalDice += diceMod;
+                const modSign = diceMod > 0 ? `+${diceMod}` : `${diceMod}`;
+                flavor += ` [${modSign} dice]`;
+              }
+
+              totalDice = Math.max(1, totalDice);
+
+              const formula = `${totalDice}d10cs>=${tn}`;
+              const roll = new Roll(formula, rollData);
+              await roll.evaluate();
+              roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: flavor,
+                content: formatRollContent(roll, tn),
+                rollMode: game.settings.get('core', 'rollMode'),
+                flags: {
+                  mekanicers: {
+                    actorId: this.actor.id,
+                    tn: tn,
+                  },
+                },
+              });
+            }
+          }
+        },
+        default: "roll"
+      }).render(true);
+      return;
     }
 
     // Handle attribute and skill rolls

@@ -58,7 +58,7 @@ Hooks.once('init', function () {
   CONFIG.Item.typeLabels = {
     item: 'Item',
     feature: 'Feature',
-    boon: 'Boon',
+    boon: 'TYPES.Item.boon',
     maneuver: 'Maneuver',
     wound: 'Wound',
     armor: 'Armor',

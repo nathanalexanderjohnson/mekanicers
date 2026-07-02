@@ -28,7 +28,7 @@
 
     <div class="sorcerer-top-row flexrow">
       <div class="attribute tile">
-        <label class="resource-label">Arcane Might</label>
+        <label class="resource-label rollable" data-roll-type="system-value" data-value-path="arcaneMight" data-label="Arcane Might" data-default-second="wil">Arcane Might</label>
         <input type="number" name="system.arcaneMight" value="{{system.arcaneMight}}" min="0" max="10" data-dtype="Number"/>
       </div>
       <div class="attribute tile">
@@ -53,11 +53,11 @@
 
     <div class="sorcerer-bottom-row grid grid-4col">
       <div class="resource">
-        <label class="resource-label">Sense the Unseen</label>
+        <label class="resource-label rollable" data-roll-type="system-value" data-value-path="senseTheUnseen.value" data-label="Sense the Unseen" data-default-second="ins">Sense the Unseen</label>
         <input type="text" name="system.senseTheUnseen.value" value="{{system.senseTheUnseen.value}}" data-dtype="Number"/>
       </div>
       <div class="resource">
-        <label class="resource-label">Arcane Lore</label>
+        <label class="resource-label rollable" data-roll-type="system-value" data-value-path="arcaneLore.value" data-label="Arcane Lore" data-default-second="ins">Arcane Lore</label>
         <input type="text" name="system.arcaneLore.value" value="{{system.arcaneLore.value}}" data-dtype="Number"/>
       </div>
       <div class="resource">
@@ -72,8 +72,6 @@
         <label class="resource-label">Mental Strain</label>
         <div class="resource-content">
           <input type="text" name="system.mentalStrain.value" value="{{system.mentalStrain.value}}" data-dtype="Number"/>
-          <span>/</span>
-          <input type="text" name="system.mentalStrain.max" value="{{system.mentalStrain.max}}" data-dtype="Number"/>
         </div>
       </div>
     </div>
@@ -85,6 +83,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="first"><i class="fas fa-plus"></i></a>
             </div>
@@ -102,6 +101,9 @@
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
             </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.first.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
+            </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="first"><i class="fas fa-magic"></i></a>
               <a class="item-control sorcerer-spellcore-delete" title="Delete"><i class="fas fa-trash"></i></a>
@@ -116,6 +118,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="second"><i class="fas fa-plus"></i></a>
             </div>
@@ -133,6 +136,9 @@
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
             </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.second.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
+            </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="second"><i class="fas fa-magic"></i></a>
               <a class="item-control sorcerer-spellcore-delete" title="Delete"><i class="fas fa-trash"></i></a>
@@ -147,6 +153,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="third"><i class="fas fa-plus"></i></a>
             </div>
@@ -164,6 +171,9 @@
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
             </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.third.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
+            </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="third"><i class="fas fa-magic"></i></a>
               <a class="item-control sorcerer-spellcore-delete" title="Delete"><i class="fas fa-trash"></i></a>
@@ -178,6 +188,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="fourth"><i class="fas fa-plus"></i></a>
             </div>
@@ -195,6 +206,9 @@
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
             </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.fourth.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
+            </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="fourth"><i class="fas fa-magic"></i></a>
               <a class="item-control sorcerer-spellcore-delete" title="Delete"><i class="fas fa-trash"></i></a>
@@ -209,6 +223,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="fifth"><i class="fas fa-plus"></i></a>
             </div>
@@ -226,6 +241,9 @@
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
             </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.fifth.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
+            </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="fifth"><i class="fas fa-magic"></i></a>
               <a class="item-control sorcerer-spellcore-delete" title="Delete"><i class="fas fa-trash"></i></a>
@@ -240,6 +258,7 @@
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
             <div class="item-study">Study</div>
+            <div class="item-ritual">Ritual</div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-create" title="Add Spell Core" data-circle="sixth"><i class="fas fa-plus"></i></a>
             </div>
@@ -256,6 +275,9 @@
                 <option value="realms" {{#if (equals entry.fieldOfStudy "realms")}}selected{{/if}}>Study of the Realms</option>
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
+            </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.sixth.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
             </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="sixth"><i class="fas fa-magic"></i></a>
@@ -287,6 +309,9 @@
                 <option value="realms" {{#if (equals entry.fieldOfStudy "realms")}}selected{{/if}}>Study of the Realms</option>
                 <option value="soul" {{#if (equals entry.fieldOfStudy "soul")}}selected{{/if}}>Study of the Soul</option>
               </select>
+            </div>
+            <div class="item-ritual">
+              <input type="checkbox" name="system.spellCores.seventh.{{index}}.ritual" {{#if entry.ritual}}checked{{/if}}/>
             </div>
             <div class="item-controls">
               <a class="item-control sorcerer-spellcore-cast" title="Cast Spell" data-index="{{index}}" data-circle="seventh"><i class="fas fa-magic"></i></a>
@@ -325,7 +350,6 @@
         <ol class="items-list">
           <li class="item flexrow items-header">
             <div class="item-name">Name</div>
-            <div class="item-level">Level</div>
             <div class="item-controls">
               <a class="item-control sorcerer-gift-create" title="Add Gift"><i class="fas fa-plus"></i></a>
             </div>
@@ -333,7 +357,6 @@
           {{#each system.gifts as |gift index|}}
           <li class="item flexrow" data-index="{{index}}">
             <div class="item-name"><input type="text" name="system.gifts.{{index}}.name" value="{{gift.name}}"/></div>
-            <div class="item-level"><input type="number" class="gift-level" name="system.gifts.{{index}}.level" value="{{gift.level}}" min="0"/></div>
             <div class="item-controls">
               <a class="item-control sorcerer-gift-delete" title="Delete"><i class="fas fa-trash"></i></a>
             </div>

@@ -77,4 +77,63 @@
       color: $c-highlight;
     }
   }
+
+  .failure-consequences {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba($c-secondary, 0.3);
+    font-size: 12px;
+    line-height: 1.4;
+
+    h4 {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: $c-highlight;
+      margin: 0 0 6px;
+    }
+
+    .failure-margin {
+      margin: 0 0 8px;
+      font-style: italic;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 6px;
+
+      th, td {
+        padding: 4px 6px;
+        border: 1px solid rgba($c-secondary, 0.4);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.06);
+        width: 40px;
+      }
+
+      tr.highlight {
+        background: rgba($c-highlight, 0.12);
+      }
+    }
+
+    .failure-effect {
+      margin: 0;
+      padding: 6px 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba($c-secondary, 0.4);
+      border-radius: 3px;
+    }
+
+    .obliteration-note {
+      margin: 4px 0 0;
+      font-style: italic;
+      color: $c-highlight;
+    }
+  }
 }
