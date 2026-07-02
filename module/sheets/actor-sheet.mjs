@@ -322,6 +322,13 @@ export class MekanicersActorSheet extends ActorSheet {
       item.update({ 'system.equipped': !item.system.equipped });
     });
 
+    // Toggle general item equipped state
+    html.on('click', '.item-toggle-equipped', (ev) => {
+      const li = $(ev.currentTarget).parents('.item');
+      const item = this.actor.items.get(li.data('itemId'));
+      item.update({ 'system.equipped': !item.system.equipped });
+    });
+
     // Toggle individual armor location
     html.on('click', '.armor-toggle-location', (ev) => {
       const a = ev.currentTarget;

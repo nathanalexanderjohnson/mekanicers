@@ -9,6 +9,7 @@ export default class MekanicersGadget extends MekanicersItemBase {
     schema.baseBlueprint = new fields.StringField({ initial: '' });
     schema.baseComplexity = new fields.NumberField({ initial: 0, integer: true });
     schema.wireType = new fields.StringField({ initial: 'copper', choices: ['copper', 'silver', 'gold'] });
+    schema.weight = new fields.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
     schema.equipped = new fields.BooleanField({ required: true, initial: false });
     schema.augments = new fields.ArrayField(
       new fields.SchemaField({

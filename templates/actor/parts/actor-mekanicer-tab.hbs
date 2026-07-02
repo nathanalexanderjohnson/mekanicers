@@ -192,6 +192,7 @@
           <div class="item-name">Name</div>
           <div class="item-blueprint">Blueprint</div>
           <div class="item-total-complexity">Total</div>
+          <div class="item-weight item-prop">Wt</div>
           <div class="gadget-equipped" title="Equipped">E</div>
           <div class="item-controls">
             <a class="item-control mekanicer-gadget-create" title="Add Gadget"><i class="fas fa-plus"></i></a>
@@ -215,6 +216,7 @@
             <div class="item-total-complexity">
               <span class="complexity-total">{{item.system.totalComplexity}}</span>
             </div>
+            <div class="item-weight item-prop">{{item.system.weight}}</div>
             <div class="gadget-equipped">
               <a class="gadget-toggle-equipped" title="Toggle Equipped">
                 <i class="fas fa-shield-alt" style="{{#unless item.system.equipped}}opacity: 0.2;{{/unless}}"></i>

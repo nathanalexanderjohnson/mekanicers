@@ -2,6 +2,7 @@
   <li class='item flexrow items-header'>
     <div class='item-name'>{{localize 'Name'}}</div>
     <div class='item-description item-prop'>{{localize 'Description'}}</div>
+    <div class='item-prop item-equipped' title='Equipped'>E</div>
     <div class='item-weight item-prop'>Wt</div>
     <div class='item-controls'>
       <a
@@ -30,6 +31,11 @@
         <h4>{{item.name}}</h4>
       </div>
       <div class='item-description item-prop'>{{item.system.description}}</div>
+      <div class='item-prop item-equipped'>
+        <a class='item-toggle-equipped' title='Toggle Equipped'>
+          <i class='fas fa-shield-alt' style='{{#unless item.system.equipped}}opacity: 0.2;{{/unless}}'></i>
+        </a>
+      </div>
       <div class='item-weight item-prop'>{{item.system.weight}}</div>
       <div class='item-controls'>
         <a
