@@ -20,7 +20,7 @@
       "thumbnail": "systems/mekanicers/assets/mekanicers-icon.png"
     }
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": {
     "minimum": 13,
     "verified": "13.351"
@@ -38,7 +38,7 @@
   "packFolders": [],
   "socket": false,
   "manifest": "https://github.com/nathanalexanderjohnson/mekanicers/releases/latest/download/system.json",
-  "download": "https://github.com/nathanalexanderjohnson/mekanicers/releases/download/1.0.0/mekanicers.zip",
+  "download": "https://github.com/nathanalexanderjohnson/mekanicers/releases/download/1.0.1/mekanicers.zip",
   "background": "systems/mekanicers/assets/mekanicers-icon.png",
   "gridDistance": 1,
   "gridUnits": "yards",
